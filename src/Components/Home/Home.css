@@ -1,0 +1,103 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+body{
+    line-height: 1.7;
+    color: #999;
+    font-weight: 300;
+    font-size: 15px;
+}
+.main-con{
+    background-image: url(https://preview.colorlib.com/theme/auction/images/xhero_1.jpg.pagespeed.ic.HtRckp66fB.webp);
+    height: 100vh;
+    min-height: 500px;
+    background-size: cover;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0,0.5);
+}
+   
+/* 
+.main-con::before{
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.2);
+    border-bottom-right-radius: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+} */
+
+.head-Top{
+    color: white;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: rgba(0,0,0,0.1);
+}
+ .head-Top h3{
+    margin: 4px 0px;
+    border-top: 4px solid orange;
+ }
+ .head-Top p{
+    margin: 4px 0px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+
+ }
+.head-Top ul{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 4px 0px;
+}
+.head-Top > ul > li{
+    font-size: 1.1rem;
+    list-style: none;
+    display: inline-block;
+    cursor: pointer;
+    margin: 2px 10px;
+    padding: 5px;
+    
+}
+.head-Top > ul > li:hover{
+  border-bottom: 2px solid #fff;
+  transition: ease-in-out .2s;    
+  cursor: pointer;
+}
+
+.Head-Bottom{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 10rem;
+    color: black;
+    text-shadow: rgba(0,0,0,0.5);
+    font-weight: 600;
+}
+.Head-Bottom > h1{
+    font-size: 60px;
+    font-weight: 900;
+    line-height: 1;
+    color: black;
+    letter-spacing: 1px;
+    word-spacing: 10px;
+}
+.Head-Bottom > p{
+    font-size: 1.2rem;
+    color: black;
+    margin: 5px 0px;
+}
+.btn {
+    background-color: orange;
+    color: white;
+    margin: 5px 0px;
+    font-size: 1.2rem;
+    padding: 10px 30px
+}

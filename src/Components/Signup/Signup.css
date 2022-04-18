@@ -1,0 +1,18 @@
+/* body{
+    display: flex;
+    justify-content: center;
+
+    min-height: 100vh;
+    background: linear-gradient(#e66465, #9198e5);
+} */
+
+.log-div{
+    max-height: 100vh;
+    background-color: #f8f9fa;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+}
+
+.form-control{
+    max-width: 80%;
+    padding: 13px 0px;
+}

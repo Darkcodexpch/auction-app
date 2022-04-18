@@ -1,0 +1,10 @@
+/* body{
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(#e66465, #9198e5);
+} */
+
+.rowdiv{
+    margin-top: 100px;
+}

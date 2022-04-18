@@ -1,0 +1,36 @@
+.item{
+    position: relative;
+    /* border: 1px solid; */
+    max-width: 270px;
+    padding: 30px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.price{
+    position: absolute;
+    height: 80px;
+    width: 80px;
+    background-color: orange;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    padding: 25px;
+}
+
+.item > h3{
+    color: #000;
+    text-align: justify;
+}
+
+.btn-bit {
+    padding: 7px 15px;
+    text-transform: none;
+    border-radius: 0;
+    background: #f8f9fa;
+    color: #000;
+}
+.bit{
+    margin-right: 38px;
+}
