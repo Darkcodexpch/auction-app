@@ -13,17 +13,17 @@ export default function Navbar() {
 <p> <Link to='/signup'>Signup/Login</Link></p> */}
         <h3>Auction</h3>
         <Nav>
-            <Nav.Item>
-                <Nav.Link href="/home">Home</Nav.Link>
+            <Nav.Item> 
+                <Nav.Link><Link to='/'>Home</Link></Nav.Link>
             </Nav.Item>
             <Nav.Item>
-                <Nav.Link eventKey="link-1">Buy</Nav.Link>
+            <Nav.Link><Link to='/Buy'>Buy</Link></Nav.Link>
             </Nav.Item>
             <Nav.Item>
-                <Nav.Link eventKey="link-2">Sale</Nav.Link>
+            <Nav.Link><Link to='/Sale'>Sale</Link></Nav.Link>
             </Nav.Item>
             <Nav.Item>
-                <Nav.Link eventKey="link-2">Login/Signup</Nav.Link>
+            <Nav.Link><Link to='/Signup'>Login/Signup</Link></Nav.Link>
             </Nav.Item>
         </Nav>
 

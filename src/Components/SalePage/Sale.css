@@ -1,0 +1,32 @@
+.buyrow{
+    height: 100vh;
+}
+
+.left-box{
+    max-width: 50vw;
+    background-color: blue;
+}
+
+.left-box > ul{
+    display: flex;
+    flex-direction: column;
+    padding: 0px;
+}
+.navli{
+    font-weight: 600;
+    width: 100%;
+    padding: 7px 10px;
+    border:  1px solid black;
+    margin: 0 auto;
+    cursor: pointer ;
+    color: white;
+    list-style: none;
+    display: inline-block;
+    margin: 5px 0px 10px 0px;
+}
+
+.navli:hover{
+    background-color: orange;
+    color: white;
+    transition: all .2s;
+}
