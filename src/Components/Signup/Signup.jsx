@@ -58,10 +58,11 @@ export default function Signup() {
             if (!snapshot.exists()) return;
             let userdata = snapshot.val()
             localStorage.setItem("logindata",JSON.stringify([userdata]));
-                if(userdata?.opt === 1){
+            alert('logindone ')
+                if(userdata?.opt == 1){
                     navigate('/Sale')
                 }
-                else if(userdata?.opt === 2){
+                else if(userdata?.opt == 2){
                     navigate('/Buy')
                 }
           })

@@ -2,7 +2,7 @@
     position: relative;
     /* border: 1px solid; */
     max-width: 270px;
-    padding: 30px;
+    padding: 15px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 .price{
@@ -22,6 +22,11 @@
 .item > h3{
     color: #000;
     text-align: justify;
+    /* font-size: 1.2rem; */
+}
+
+.itemsh3{
+    font-size: 1.2rem;
 }
 
 .btn-bit {
@@ -33,4 +38,8 @@
 }
 .bit{
     margin-right: 38px;
+}
+
+.img-fluid{
+    height: 250px;
 }

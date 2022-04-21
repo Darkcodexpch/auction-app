@@ -1,6 +1,20 @@
 import { Container, Row, Col } from "react-bootstrap"
+import { db } from "../../FirebaseConfig/FirebaseConfig"
+import { useEffect,useState } from "react"
+import { NavLink } from "react-router-dom"
 import './Items.css'
 export default function Items() {
+    const [itemsData, setitemsData] = useState()
+    useEffect(() => {
+        db.ref("items").on('value', (snapshot) => {
+            let newdata =[];
+            snapshot.forEach(data => {
+                newdata.push({ data: data.val() })
+
+            })
+           newdata&&setitemsData(newdata)
+        })
+    }, [])
   return (
     <div className="auction">
         <Container>
@@ -10,24 +24,28 @@ export default function Items() {
                  <h2>Current Auctions</h2>
              </Col>
          </Row>
-         <Row>
-             <Col md={4} lg={4}>
+         <Row className="d-flex justify-content-center">
+             {itemsData && itemsData.map((v,k)=>{
+                 return <Col md={4} lg={4} key={k} className="d-flex justify-content-center">
                  <div className="item">
                      <div className="item-head">
-                        <strong className="price">$95</strong>
-                        <img src="https://preview.colorlib.com/theme/auction/images/xproduct_1.jpg.pagespeed.ic.jv58llKnOW.webp" className="img-fluid" height="270" width="270" alt="itemImage"/>
+                        <strong className="price">{"$" + v.data.price}</strong>
+                        <img src={v.data.imgg} className="img-fluid" height="250" width="250" alt="itemImage"/>
                      </div>
                      <div>
-                         <h3>Pinky Shoes</h3>
+                         <h3>{v.data.name}</h3>
                          <div className="d-flex justify-content-between mb-2">
-                             <span>Shoes</span>
+                             <span>{v.data.itemtype}</span>
                              <span className="bit">4bids</span>
                          </div>
-                         <button className="btn-bit">Submit a Bit</button>
+                         <NavLink to={`item/${v.data.itemuniqueid}`}><button className="btn-bit">View Item</button></NavLink>
+                         
                      </div>
 
                  </div>
-             </Col>
+             </Col> 
+
+             })}
     
         </Row>   
         </Container>

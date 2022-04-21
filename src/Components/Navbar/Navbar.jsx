@@ -18,6 +18,9 @@ export default function Navbar() {
             <Nav.Item>
             <Nav.Link><Link to='/Signup'>Login/Signup</Link></Nav.Link>
             </Nav.Item>
+            <Nav.Item>
+            <Nav.Link><Link to='#'>Logout</Link></Nav.Link>
+            </Nav.Item>
         </Nav>
 
     </Col>
