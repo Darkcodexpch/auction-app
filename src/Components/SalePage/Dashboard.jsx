@@ -1,7 +1,13 @@
-import React from 'react'
-
+import { Container, Row, Col} from "react-bootstrap"
+import Items from "../Items/Items"
 export default function Dashboard() {
   return (
-    <div>Dashboard</div>
+    <Container>
+      <Row>
+        <Col md={12}>
+        <Items/>
+        </Col>
+      </Row>
+    </Container>
   )
 }

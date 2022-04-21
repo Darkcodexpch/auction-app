@@ -9,6 +9,7 @@ import { Routes, Route, BrowserRouter} from "react-router-dom"
 import Dashboard from '../Components/SalePage/Dashboard'
 import AddItem from '../Components/SalePage/AddItem'
 import Message from '../Components/SalePage/Message'
+import Buy from '../Components/Buy/Buy'
 
 
 
@@ -26,6 +27,7 @@ export default function AppRouter() {
       <Route path='Additem' element={<AddItem/>}></Route>
       <Route path='Message' element={<Message/>}></Route>
       </Route>
+      <Route path='/Buy' element={<Buy/>}></Route>
     </Routes>
     </BrowserRouter>
     
