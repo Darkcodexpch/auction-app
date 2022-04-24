@@ -15,7 +15,7 @@ export default function Dashboard() {
           })
 
          var newArray = newdata.filter(function (el) {
-          return el.data.uid === uid
+          return el.data.salerid === uid
         }
         );
         setitemsData(newArray)
