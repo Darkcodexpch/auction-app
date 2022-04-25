@@ -106,45 +106,36 @@ export default function SingleItem() {
             alert("Message sent Successfully")
         }
     }
+
     // see highest bid person
-    if (bidderData.length >= 1) {
-        const max = bidderData && bidderData.reduce(function (prev, current) {
-            return (prev.bidAmount > current.bidAmount) ? prev : current
-        }) //returns object
-
-        let  maxData ={
-            bidamount:max?.data?.bidAmount,
-            bidderemail:max.data.bidderemail,
-            bidderid:max.data.bidderid,
-            biddername:max.data.biddername,
-            itemdescription:max.data.itemdescription,
-            itemid:max.data.itemid,
-            itemimage:max.data.itemimage,
-            itemname:max.data.itemname
-        
-        }
-        const highestBid = (maxData,Currenttime, EndTime) => {
-
-            if (EndTime < Currenttime) {
-                db.ref('/').child('purchaseditems').push(maxData)
-                console.log("im running")
-                // console.log("max",max)
-            }
-            else {
-                console.log("Not Working")
-            }
+    const max = bidderData && bidderData.reduce(function (prev, current) {
+        return (prev.bidAmount > current.bidAmount) ? prev : current
+    }) //returns object
     
+
+    const highestBid = (Currenttime, EndTime) => {
+        if (EndTime < Currenttime && bidderData.length >= 1) {
+            let maxData = {
+                bidamount: max?.data?.bidAmount,
+                bidderemail: max.data.bidderemail,
+                bidderid: max.data.bidderid,
+                biddername: max.data.biddername,
+                itemdescription: max.data.itemdescription,
+                itemid: max.data.itemid,
+                itemimage: max.data.itemimage,
+                itemname: max.data.itemname
+    
+            }
+            db.ref('/').child('purchaseditems').push(maxData)
+            console.log("im running")
+            // console.log("max",max)
         }
+        else {
+            console.log("Not Working")
+        }
+
     }
-
-    // useEffect(() => {
-    //     highestBid(maxData,Currenttime, EndTime);
-    // }, [EndTime])
-
     
-
-   
-
     const [purchaseItem, setPurchaseitem] = useState('')
     useEffect(() => {
         db.ref("purchaseditems").on('value', (snapshot) => {
@@ -158,8 +149,19 @@ export default function SingleItem() {
         })
 
     }, [])
+    useEffect(() => {
+        if(purchaseItem.length === 0 || purchaseItem[0].data.itemid !== id || EndTime < Currenttime){
+            highestBid(Currenttime, EndTime);
+            console.log("Added")
+        }
+        else{
+            console.log("Already Add")
+        }
+        
+    }, [EndTime])
 
-    // console.log("purchaseItem", purchaseItem)
+
+    // console.log("purchaseItem", purchaseItem[0].data.itemid)
 
     return (
         <>
