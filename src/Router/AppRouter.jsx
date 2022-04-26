@@ -11,6 +11,8 @@ import AddItem from '../Components/SalePage/AddItem'
 import Message from '../Components/SalePage/Message'
 import Buy from '../Components/Buy/Buy'
 import Proctected from '../Proctected'
+import Messagesaler from '../Components/Buy/Messagesaler'
+import Mybid from '../Components/Buy/Mybid'
 
 
 
@@ -29,6 +31,8 @@ export default function AppRouter() {
       <Route path='Message' element={<Message/>}></Route>
       </Route>
       <Route path='/Buy' element={<Proctected Cmp={Buy}/>}>
+      <Route path='' element={<Mybid/>}></Route>
+      <Route path='Message' element={<Messagesaler/>}></Route>
      </Route>
     </Routes>
     </BrowserRouter>

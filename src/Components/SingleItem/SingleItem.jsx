@@ -24,13 +24,17 @@ export default function SingleItem() {
             newArray && setitemsData(newArray)
         })
     }, [])
-    // console.log("itemsData",itemsData && itemsData[0].data.biddingendtime)
+    // console.log("itemsData",itemsData && itemsData[0].data.imgg)
+    // console.log("itemsData1",itemsData)
     const [bidAmount, setBidAmount] = useState('')
     const addBitHandler = () => {
-        let price = itemsData && parseInt(itemsData[0].data.price)
-        console.log("Price", price)
+        let price = itemsData && itemsData[0].data.price
         if (bidAmount < price) {
             alert("Please Bid Greather Than Current Bid Amount")
+            setBidAmount('')
+        }
+        else if (Data[0].opt == 1) {
+            alert("only buyer can bid")
             setBidAmount('')
         }
         else {
@@ -39,7 +43,10 @@ export default function SingleItem() {
                 bidderid: Data[0].id,
                 bidderemail: Data[0].email,
                 biddername: Data[0].name,
-                bidAmount
+                bidAmount: parseInt(bidAmount),
+                itemimage: itemsData[0].data.imgg,
+                itemname: itemsData[0].data.name,
+                itemdescription: itemsData[0].data.decription
 
             }
             db.ref('/').child('bids').push(bidData)
@@ -50,7 +57,7 @@ export default function SingleItem() {
 
     // bidderDAta
     const [bidderData, setbidderData] = useState('');
-    const [maxval,setMaxval] = useState('')
+    const [maxval, setMaxval] = useState('')
     useEffect(() => {
         db.ref("bids").on('value', (snapshot) => {
             let newdata = [];
@@ -61,20 +68,99 @@ export default function SingleItem() {
             })
             let newArray = newdata.filter(function (el) {
                 return el.data.itemid === id
-            }           
+            }
             );
             newArray && setbidderData(newArray)
         })
-   
+
     }, [])
 
-    // console.log("bidderData",bidderData)
-    console.log("maxBidData",maxval)
-
+    // console.log("bidderData", bidderData)    
     // datework
     const Currenttime = moment().format("HH:mm:ss a");
+    // console.log("Currenttime",Currenttime);
     const EndTime = moment(itemsData && itemsData[0].data.biddingendtime).format("HH:mm:ss a");
     let d = moment.duration(moment(EndTime, "HH:mm:ss a").diff(moment(Currenttime, "HH:mm:ss a")));
+
+
+    // messageSaler
+    const [messagesaler, setMessageSaler] = useState('')
+    let messageSalerHandler = () => {
+        if (messagesaler === '') {
+            alert('Please type message First')
+        }
+        else {
+            let messageSalerData = {
+                buyermessage: messagesaler,
+                buyerid: Data[0].id,
+                buyername: Data[0].name,
+                buyeremail: Data[0].email,
+                salerid: itemsData[0].data.salerid,
+                salername: itemsData[0].data.salername,
+                itemuniqueid: itemsData[0].data.itemuniqueid
+
+
+            }
+            db.ref('/').child('messages').push(messageSalerData)
+            setMessageSaler('')
+            alert("Message sent Successfully")
+        }
+    }
+    // see highest bid person
+    if (bidderData.length >= 1) {
+        const max = bidderData && bidderData.reduce(function (prev, current) {
+            return (prev.bidAmount > current.bidAmount) ? prev : current
+        }) //returns object
+
+        let  maxData ={
+            bidamount:max?.data?.bidAmount,
+            bidderemail:max.data.bidderemail,
+            bidderid:max.data.bidderid,
+            biddername:max.data.biddername,
+            itemdescription:max.data.itemdescription,
+            itemid:max.data.itemid,
+            itemimage:max.data.itemimage,
+            itemname:max.data.itemname
+        
+        }
+        const highestBid = (maxData,Currenttime, EndTime) => {
+
+            if (EndTime < Currenttime) {
+                db.ref('/').child('purchaseditems').push(maxData)
+                console.log("im running")
+                // console.log("max",max)
+            }
+            else {
+                console.log("Not Working")
+            }
+    
+        }
+    }
+
+    // useEffect(() => {
+    //     highestBid(maxData,Currenttime, EndTime);
+    // }, [EndTime])
+
+    
+
+   
+
+    const [purchaseItem, setPurchaseitem] = useState('')
+    useEffect(() => {
+        db.ref("purchaseditems").on('value', (snapshot) => {
+            let newdata = [];
+            // let maxdata =[];
+            snapshot.forEach(data => {
+                newdata.push({ data: data.val() })
+
+            })
+            newdata && setPurchaseitem(newdata)
+        })
+
+    }, [])
+
+    // console.log("purchaseItem", purchaseItem)
+
     return (
         <>
             <Container>
@@ -125,6 +211,10 @@ export default function SingleItem() {
                                     <h3>{v.data.salername}</h3>
                                     <span>Owner</span>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil repudiandae recusandae, incidunt possimus provident vel facilis!</p>
+                                    <div className="saler">
+                                        <input type="text" placeholder="Enter Your Message" className="p-2" value={messagesaler} onChange={(e) => { setMessageSaler(e.target.value) }} />
+                                        <button className="btn-saler my-2 p-2" onClick={messageSalerHandler}>Message Saler</button>
+                                    </div>
 
                                 </div>
                             </Col></>
@@ -134,18 +224,18 @@ export default function SingleItem() {
                     <Col md={12} lg={12}>
                         <h2 className="bidderss">Number of Bids : {bidderData.length}</h2>
                         <ul>
-                            {bidderData && bidderData.map((v,k)=>{
+                            {bidderData && bidderData.map((v, k) => {
                                 return <li class="d-flex justify-content-between align-items-center bidders" key={k}>
-                                <div class="d-flex align-items-center">
-                                    <span class="mr-2">{k+1}</span>
-                                    <div class="d-flex align-items-center bidder-info px-4">
-                                        <span className="px-4">{v.data.biddername}</span>
+                                    <div class="d-flex align-items-center">
+                                        <span class="mr-2">{k + 1}</span>
+                                        <div class="d-flex align-items-center bidder-info px-4">
+                                            <span className="px-4">{v.data.biddername}</span>
+                                        </div>
                                     </div>
-                                </div>
-                                <span class="prices">{`$ ${v.data.bidAmount}`}</span>
-                            </li>
+                                    <span class="prices">{`$ ${v.data.bidAmount}`}</span>
+                                </li>
                             })}
-                            </ul>
+                        </ul>
                     </Col>
 
                 </Row>

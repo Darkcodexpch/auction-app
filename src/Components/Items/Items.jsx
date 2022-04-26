@@ -36,7 +36,6 @@ export default function Items() {
                          <h3>{v.data.name}</h3>
                          <div className="d-flex justify-content-between mb-2">
                              <span>{v.data.itemtype}</span>
-                             <span className="bit">4bids</span>
                          </div>
                          <NavLink to={`item/${v.data.itemuniqueid}`}><button className="btn-bit">View Item</button></NavLink>
                          

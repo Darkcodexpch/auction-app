@@ -36,7 +36,7 @@ export default function Dashboard() {
                          <h3 className="itemsh3">{v.data.name}</h3>
                          <div className="d-flex justify-content-between mb-2">
                              <span>{v.data.itemtype}</span>
-                             <span className="bit">4bids</span>
+                             {/* <span className="bit">4bids</span> */}
                          </div>
                          {/* <button className="btn-bit">Submit a Bit</button> */}
                      </div>
